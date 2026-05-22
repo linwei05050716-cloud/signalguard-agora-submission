@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SignalGuard Demo Video</title>
+    <meta
+      name="description"
+      content="SignalGuard Agora Agents Hackathon demo video, transcript, and judge links."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #172033;
+        --muted: #59657a;
+        --line: #d9e1ee;
+        --paper: #fbfcff;
+        --blue: #2357d9;
+        --cyan: #00a3b8;
+        --green: #208a5d;
+        --amber: #b46805;
+        --shadow: 0 18px 60px rgba(22, 38, 75, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(circle at 12% 10%, rgba(0, 163, 184, 0.14), transparent 28rem),
+          linear-gradient(135deg, #f4f8ff 0%, #fffaf0 52%, #eefdf8 100%);
+      }
+
+      a {
+        color: var(--blue);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 28px 0 44px;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 850;
+        letter-spacing: 0;
+      }
+
+      .mark {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border-radius: 8px;
+        color: white;
+        background: linear-gradient(135deg, var(--blue), var(--cyan));
+        box-shadow: 0 10px 24px rgba(35, 87, 217, 0.25);
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 38px;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: var(--ink);
+        background: rgba(255, 255, 255, 0.78);
+        box-shadow: 0 8px 20px rgba(22, 38, 75, 0.06);
+      }
+
+      .button.primary {
+        color: white;
+        border-color: transparent;
+        background: linear-gradient(135deg, var(--blue), var(--cyan));
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.55fr);
+        gap: 22px;
+        align-items: stretch;
+      }
+
+      .video-panel,
+      .side-panel,
+      .section {
+        border: 1px solid rgba(170, 184, 207, 0.75);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: var(--shadow);
+      }
+
+      .video-panel {
+        overflow: hidden;
+      }
+
+      .video-head {
+        padding: 24px 24px 16px;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--green);
+        font-size: 0.78rem;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 780px;
+        margin: 0;
+        font-size: clamp(2.1rem, 4vw, 4.4rem);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      .lede {
+        max-width: 780px;
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .video-wrap {
+        padding: 0 18px 18px;
+      }
+
+      video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 1px solid #cfd9ea;
+        border-radius: 8px;
+        background: #0f1728;
+      }
+
+      .note {
+        margin: 12px 4px 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.5;
+      }
+
+      .side-panel {
+        padding: 22px;
+      }
+
+      .metric {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .metric:last-child {
+        border-bottom: 0;
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+        font-size: 1.2rem;
+      }
+
+      .metric span {
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 22px;
+      }
+
+      .section {
+        padding: 20px;
+      }
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 1.05rem;
+      }
+
+      ul,
+      ol {
+        margin: 0;
+        padding-left: 1.2rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .transcript {
+        grid-column: 1 / -1;
+      }
+
+      .transcript p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .fallback {
+        border-left: 4px solid var(--amber);
+        background: #fff8ec;
+      }
+
+      @media (max-width: 860px) {
+        .topbar,
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          align-items: flex-start;
+        }
+
+        .links {
+          justify-content: flex-start;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="topbar" aria-label="Submission links">
+        <div class="brand">
+          <span class="mark">SG</span>
+          <span>SignalGuard</span>
+        </div>
+        <div class="links">
+          <a class="button primary" href="./">Live App</a>
+          <a class="button" href="https://github.com/linwei05050716-cloud/signalguard-agora-submission">Source</a>
+          <a
+            class="button"
+            href="https://raw.githubusercontent.com/linwei05050716-cloud/signalguard-agora-submission/main/artifacts/signalguard-demo-v4.mp4"
+          >
+            Direct MP4
+          </a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <article class="video-panel">
+          <div class="video-head">
+            <p class="eyebrow">Agora Agents Hackathon Demo</p>
+            <h1>Receipt-first prediction-market intelligence.</h1>
+            <p class="lede">
+              A concise walkthrough of SignalGuard: an agent workbench that turns recommendations,
+              refusals, risk gates, Arc-compatible proofs, and unresolved exchange states into auditable
+              receipts.
+            </p>
+          </div>
+          <div class="video-wrap">
+            <video
+              controls
+              preload="metadata"
+              poster="artifacts/preview-bright-judge.png"
+              aria-label="SignalGuard narrated demo video"
+            >
+              <source src="artifacts/signalguard-demo-v4.mp4" type="video/mp4" />
+              <track
+                kind="captions"
+                src="artifacts/signalguard-demo-v4.srt"
+                srclang="en"
+                label="English captions"
+                default
+              />
+              Your browser cannot play this video. Use the Direct MP4 link above.
+            </video>
+            <p class="note">
+              Captions are included. If the embedded player is blocked by a browser extension, open the
+              Direct MP4 link or review the transcript below.
+            </p>
+          </div>
+        </article>
+
+        <aside class="side-panel" aria-label="Demo summary">
+          <div class="metric">
+            <strong>2 paths</strong>
+            <span>Capped action and blocked refusal are both shown as first-class agent outcomes.</span>
+          </div>
+          <div class="metric">
+            <strong>USDC risk</strong>
+            <span>Exposure caps and future settlement records are denominated in USDC microunits.</span>
+          </div>
+          <div class="metric">
+            <strong>Arc proof</strong>
+            <span>A canonical receipt hash is ready for Arc-compatible anchoring.</span>
+          </div>
+          <div class="metric">
+            <strong>No secrets</strong>
+            <span>The public demo contains no wallet keys, API tokens, or live trading switch.</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="grid" aria-label="Judge notes">
+        <article class="section">
+          <h2>What To Verify</h2>
+          <ol>
+            <li>Open the Live App.</li>
+            <li>Switch between action and refusal receipts.</li>
+            <li>Copy/export receipt JSON and Arc proof artifacts.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Why It Matters</h2>
+          <ul>
+            <li>Prediction-market agents need accountability, not only speed.</li>
+            <li>Missing exchange acknowledgements remain visible as risk states.</li>
+            <li>Every recommendation can be audited outside the UI.</li>
+          </ul>
+        </article>
+
+        <article class="section fallback">
+          <h2>Playback Backup</h2>
+          <p class="note">
+            Direct download:
+            <a
+              href="https://raw.githubusercontent.com/linwei05050716-cloud/signalguard-agora-submission/main/artifacts/signalguard-demo-v4.mp4"
+            >
+              signalguard-demo-v4.mp4
+            </a>
+          </p>
+          <p class="note">
+            Captions:
+            <a href="artifacts/signalguard-demo-v4.srt">signalguard-demo-v4.srt</a>
+          </p>
+        </article>
+
+        <article class="section transcript">
+          <h2>Short Transcript</h2>
+          <p>
+            SignalGuard watches a prediction market, scores a thesis, applies non-negotiable risk gates,
+            and then either submits a capped action or refuses the trade. The product is the receipt:
+            evidence, limits, status, and proof hash travel together. In the demo, a BUY Up candidate is
+            capped at 1.20 USDC, the submit count is limited to one, and a missing terminal exchange
+            response is surfaced as unresolved risk. The second receipt shows the opposite behavior:
+            when price or edge fails, the agent blocks the action and still emits an auditable receipt.
+            The Arc proof tab shows how the receipt hash and USDC-denominated metadata can be anchored
+            for settlement-ready attribution.
+          </p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
