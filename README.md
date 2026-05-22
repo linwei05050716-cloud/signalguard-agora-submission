@@ -5,7 +5,8 @@ Receipt-first prediction-market intelligence agent for the Agora Agents Hackatho
 ## Live Demo
 
 - Live app: https://linwei05050716-cloud.github.io/signalguard-agora-submission/
-- Demo video: https://github.com/linwei05050716-cloud/signalguard-agora-submission/blob/main/artifacts/signalguard-demo-v4.mp4
+- Demo video page: https://linwei05050716-cloud.github.io/signalguard-agora-submission/demo.html
+- Direct MP4 fallback: https://raw.githubusercontent.com/linwei05050716-cloud/signalguard-agora-submission/main/artifacts/signalguard-demo-v4.mp4
 - Judge brief: [docs/judge-brief.md](docs/judge-brief.md)
 - Full project README: [README-full.md](README-full.md)
 
@@ -42,7 +43,7 @@ SignalGuard also connects naturally to Arc and Circle because every decision can
 1. Open the live app.
 2. Click **Open workbench**.
 3. Review **Overview**, **Decision Receipt**, **Arc Proof**, **Judge Mode**, and **Submit Packet**.
-4. Watch the under-three-minute demo video with subtitles.
+4. Watch the demo video page with subtitles and fallback links.
 5. Inspect `data/decision_receipts.json` and `contracts/SignalGuardReceiptRegistry.sol`.
 6. Run the local checks if desired:
 
