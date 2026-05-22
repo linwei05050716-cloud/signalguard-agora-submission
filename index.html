@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SignalGuard Agora</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2393ff28'/%3E%3Cpath d='M8 8h48v48H8z' fill='none' stroke='%230b1713' stroke-width='6'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='22' font-weight='800' fill='%230b1713'%3ESG%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">SG</div>
+      <div>
+        <strong>SignalGuard</strong>
+        <span>Prediction-market intelligence agent</span>
+      </div>
+    </div>
+    <nav aria-label="Primary">
+      <a href="#agent">Agent</a>
+      <a href="#risk">Risk</a>
+      <a href="#agent" data-open-view="receipt">Receipts</a>
+      <a href="#arc">Arc</a>
+    </nav>
+    <button class="primary" data-open-view="submit">Demo Mode</button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Agora Agents Hackathon · RFB 02</p>
+        <h1>Autonomous prediction-market intelligence, with receipts.</h1>
+        <p class="lede">SignalGuard turns noisy market, news, and order-book signals into auditable recommendations. Every action passes through hard risk limits before it can become a trade.</p>
+        <div class="hero-actions">
+          <a class="primary-link" href="#agent">Open workbench</a>
+          <a class="secondary-link" href="docs/submission.md">Submission draft</a>
+        </div>
+      </div>
+      <div class="market-panel" aria-label="Live market intelligence summary">
+        <div class="panel-heading">
+          <span>Market thesis</span>
+          <strong>BTC 5m direction</strong>
+        </div>
+        <div class="price-row">
+          <div>
+            <span>Agent fair</span>
+            <strong>64.2%</strong>
+          </div>
+          <div>
+            <span>Market ask</span>
+            <strong>60.0%</strong>
+          </div>
+          <div>
+            <span>Edge</span>
+            <strong class="positive">+4.2%</strong>
+          </div>
+        </div>
+        <div class="signal-meter">
+          <span style="width: 72%"></span>
+        </div>
+        <ul class="compact-list">
+          <li><b>Signal:</b> upward momentum confirmed for 106s</li>
+          <li><b>Liquidity:</b> minimum two-sided depth passed</li>
+          <li><b>Risk:</b> capped execution only, one live submit max</li>
+          <li><b>Receipt:</b> every action or refusal becomes audit material</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="workspace" id="agent">
+      <aside class="sidebar">
+        <button class="tab active" data-view="overview">Overview</button>
+        <button class="tab" data-view="receipt">Decision Receipt</button>
+        <button class="tab" data-view="replay">Market Replay</button>
+        <button class="tab" data-view="arc">Arc Proof</button>
+        <button class="tab" data-view="judge">Judge Mode</button>
+        <button class="tab" data-view="submit">Submit Packet</button>
+      </aside>
+
+      <section class="view-stack">
+        <article class="view active" id="view-overview">
+          <div class="section-head">
+            <p class="eyebrow">Workbench</p>
+            <h2>Agent status</h2>
+          </div>
+          <div class="module case-console">
+            <div>
+              <span class="case-pill" id="case-label">Capped submit receipt</span>
+              <h3 id="case-title">Allowed action with unresolved lifecycle</h3>
+              <p id="case-summary">The agent passed hard risk gates, submitted once, and left an auditable unresolved state for reconciliation.</p>
+            </div>
+            <div class="segmented receipt-switcher" aria-label="Receipt case selector"></div>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric"><span>Signals scanned</span><strong>1,284</strong></div>
+            <div class="metric"><span>Risk blocks</span><strong>413</strong></div>
+            <div class="metric"><span>Human-reviewed theses</span><strong>18</strong></div>
+            <div class="metric"><span>Capped live submits</span><strong>1</strong></div>
+          </div>
+          <div class="module loop-module">
+            <h3>Agent decision loop</h3>
+            <div class="loop-track" id="agent-loop"></div>
+          </div>
+          <div class="columns">
+            <div class="module">
+              <h3>Current recommendation</h3>
+              <dl class="kv">
+                <div><dt>Action</dt><dd id="current-action">Watchlist + capped buy candidate</dd></div>
+                <div><dt>Outcome</dt><dd id="current-outcome">Up</dd></div>
+                <div><dt>Max notional</dt><dd id="current-notional">$1.20 USDC</dd></div>
+                <div><dt>Confidence</dt><dd id="current-confidence">Medium, requires liquidity confirmation</dd></div>
+              </dl>
+            </div>
+            <div class="module" id="risk">
+              <h3>Risk governor</h3>
+              <div id="risk-checks">
+                <div class="checkline pass">Price cap passed: ask 0.60 ≤ 0.68</div>
+                <div class="checkline pass">Exposure cap passed: $1.20 max</div>
+                <div class="checkline pass">Submit cap passed: one live action only</div>
+                <div class="checkline warn">Lifecycle pending: no result/fill receipt yet</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="view" id="view-receipt">
+          <div class="section-head">
+            <p class="eyebrow">Auditable reasoning</p>
+            <h2>Decision receipt</h2>
+          </div>
+          <div class="receipt-toolbar">
+            <div class="segmented receipt-switcher" aria-label="Receipt case selector"></div>
+            <div class="tool-row">
+              <button class="utility" data-copy="receipt">Copy receipt</button>
+              <button class="utility" data-download="receipt">Download JSON</button>
+              <span class="copy-status" id="receipt-copy-status" role="status"></span>
+            </div>
+          </div>
+          <pre class="code" id="receipt-json"></pre>
+        </article>
+
+        <article class="view" id="view-replay">
+          <div class="section-head">
+            <p class="eyebrow">Replay</p>
+            <h2>Order lifecycle</h2>
+          </div>
+          <ol class="timeline" id="timeline"></ol>
+        </article>
+
+        <article class="view" id="view-arc">
+          <div class="section-head">
+            <p class="eyebrow">Circle / Arc</p>
+            <h2>Receipt anchor proof</h2>
+          </div>
+          <div class="receipt-toolbar">
+            <div class="proof-note">The proof hash anchors the capped-submit receipt and is ready for Arc registry anchoring.</div>
+            <div class="tool-row">
+              <button class="utility" data-copy="hash">Copy hash</button>
+              <button class="utility" data-copy="proof">Copy proof</button>
+              <button class="utility" data-download="proof">Download proof</button>
+              <span class="copy-status" id="proof-copy-status" role="status"></span>
+            </div>
+          </div>
+          <div class="arc-proof-grid">
+            <div class="module">
+              <h3>Anchor target</h3>
+              <dl class="kv">
+                <div><dt>Network</dt><dd id="arc-network">Arc testnet</dd></div>
+                <div><dt>Currency</dt><dd id="arc-currency">USDC</dd></div>
+                <div><dt>Contract</dt><dd>SignalGuardReceiptRegistry.sol</dd></div>
+                <div><dt>Event</dt><dd>DecisionReceiptAnchored</dd></div>
+              </dl>
+            </div>
+            <div class="module">
+              <h3>Proof summary</h3>
+              <dl class="kv">
+                <div><dt>Receipt</dt><dd id="arc-receipt-id">Loading</dd></div>
+                <div><dt>Max notional</dt><dd id="arc-notional">Loading</dd></div>
+                <div><dt>Lifecycle</dt><dd id="arc-lifecycle">Loading</dd></div>
+                <div><dt>Terminal receipt</dt><dd id="arc-terminal">Loading</dd></div>
+              </dl>
+            </div>
+          </div>
+          <pre class="code proof-hash" id="arc-proof-json"></pre>
+        </article>
+
+        <article class="view" id="view-judge">
+          <div class="section-head">
+            <p class="eyebrow">Agora readiness</p>
+            <h2>What this proves</h2>
+          </div>
+          <div class="judge-grid">
+            <div class="module judge-card">
+              <span>30%</span>
+              <h3>Agent sophistication</h3>
+              <p>Autonomous thesis, explicit risk gates, action/refusal receipts, and lifecycle reconciliation.</p>
+            </div>
+            <div class="module judge-card">
+              <span>20%</span>
+              <h3>Circle / Arc usage</h3>
+              <p>USDC-denominated risk, Arc-ready registry contract, generated receipt anchor proof, and a clear settlement path.</p>
+            </div>
+            <div class="module judge-card">
+              <span>20%</span>
+              <h3>Innovation</h3>
+              <p>The reasoning trace becomes the auditable product, not just a hidden trade signal.</p>
+            </div>
+            <div class="module judge-card">
+              <span>30%</span>
+              <h3>Traction path</h3>
+              <p>Ready for public deploy and user feedback; traction must be reported honestly after outreach.</p>
+            </div>
+          </div>
+          <div class="module readiness">
+            <h3>Submission artifacts</h3>
+            <div class="checkline pass">Dashboard, receipt schema, replay data, and reconciler are included.</div>
+            <div class="checkline pass">Arc receipt registry and generated anchor proof are included.</div>
+            <div class="checkline pass">Local demo video and form answers are prepared.</div>
+            <div class="checkline warn">Public repo, hosted link, uploaded video, and real user feedback still require account-level action.</div>
+          </div>
+        </article>
+
+        <article class="view" id="view-submit">
+          <div class="section-head">
+            <p class="eyebrow">Hackathon packet</p>
+            <h2>What judges can verify</h2>
+          </div>
+          <div class="packet-grid">
+            <div class="module"><h3>Public repo</h3><p>Sanitized source, sample adapters, receipt schema, replay data, and dashboard.</p></div>
+            <div class="module"><h3>Demo video</h3><p>Under-three-minute walkthrough with male voiceover, subtitles, risk gate, receipt, replay, and Arc proof.</p></div>
+            <div class="module"><h3>Live link</h3><p>Ready for static deploy without exposing secrets, wallets, or live keys.</p></div>
+            <div class="module"><h3>Judge brief</h3><p>A one-page map from scoring criteria to files, screenshots, and verifiable artifacts.</p></div>
+            <div class="module"><h3>Export controls</h3><p>Judges can copy or download the active receipt and Arc proof directly from the interface.</p></div>
+          </div>
+        </article>
+      </section>
+    </section>
+
+    <section class="arc-band" id="arc">
+      <div>
+        <p class="eyebrow">Arc / USDC layer</p>
+        <h2>Receipts first, settlement second.</h2>
+      </div>
+      <p>SignalGuard hashes every decision receipt so downstream agents, users, and builders can audit why an action happened. Circle gives the project a natural USDC unit for caps, fees, and attribution, while Arc provides the low-cost receipt rail that can turn agent recommendations into composable settlement records.</p>
+    </section>
+  </main>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

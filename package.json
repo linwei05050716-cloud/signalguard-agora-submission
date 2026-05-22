@@ -1,0 +1,15 @@
+{
+  "name": "signalguard-agora",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Receipt-first prediction-market intelligence agent for the Agora Agents Hackathon.",
+  "type": "module",
+  "scripts": {
+    "proof": "node scripts/build_arc_receipt_proof.mjs",
+    "record-demo": "node scripts/record_demo_video.mjs",
+    "test": "node scripts/verify_submission.mjs && node scripts/build_arc_receipt_proof.mjs --check"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
