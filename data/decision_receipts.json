@@ -1,0 +1,164 @@
+[
+  {
+    "id": "sg-demo-20260521-095646",
+    "project": "SignalGuard",
+    "receipt_version": "agora-0.1",
+    "created_at": "2026-05-21T01:56:46.911Z",
+    "market": {
+      "venue": "prediction-market adapter",
+      "title": "BTC 5m direction",
+      "outcome": "Up",
+      "observed_price": 0.6,
+      "estimated_fair_probability": 0.642,
+      "edge": 0.042
+    },
+    "agent_thesis": {
+      "summary": "Short-window upward displacement persisted long enough to pass the signal gate, but execution remains capped because the market is thin and time-sensitive.",
+      "evidence": [
+        "direction held for 106 seconds",
+        "absolute move exceeded live threshold",
+        "two-sided depth check passed",
+        "ask remained inside configured price range"
+      ],
+      "confidence": "medium"
+    },
+    "agent_loop": [
+      {
+        "stage": "observe",
+        "input": "price, short-window momentum, time in market, and two-sided depth",
+        "output": "candidate market state"
+      },
+      {
+        "stage": "score",
+        "input": "observed price 0.60 versus estimated fair probability 0.642",
+        "output": "positive but narrow edge"
+      },
+      {
+        "stage": "gate",
+        "input": "price cap, USDC notional cap, liquidity, and one-submit limit",
+        "output": "allow capped submit"
+      },
+      {
+        "stage": "act",
+        "input": "approved BUY Up candidate",
+        "output": "single capped submit, no repeat"
+      },
+      {
+        "stage": "anchor",
+        "input": "canonical decision receipt",
+        "output": "Arc-ready USDC receipt proof"
+      },
+      {
+        "stage": "reconcile",
+        "input": "submit without terminal exchange acknowledgement",
+        "output": "unresolved lifecycle surfaced for review"
+      }
+    ],
+    "risk_governor": {
+      "action": "allow_capped_submit",
+      "max_buy_price": 0.68,
+      "max_notional_usdc": 1.2,
+      "max_live_submits": 1,
+      "hard_blocks": [
+        "no live execution without explicit cap",
+        "no repeat submit after one live action",
+        "no unbounded martingale or averaging down"
+      ]
+    },
+    "execution_adapter": {
+      "mode": "replay_from_sanitized_log",
+      "side": "BUY",
+      "price": 0.6,
+      "size": 2.0,
+      "order_id": "",
+      "lifecycle_status": "submitted_without_result_receipt",
+      "note": "The demo treats missing exchange acknowledgement as a first-class risk state rather than hiding it."
+    },
+    "arc_receipt_layer": {
+      "settlement_currency": "USDC",
+      "intent": "hash decision receipt for low-cost attribution and audit on Arc-compatible rails",
+      "max_notional_microusd": 1200000,
+      "anchor_proof_ref": "data/arc_receipt_anchor.json"
+    }
+  },
+  {
+    "id": "sg-demo-risk-block",
+    "project": "SignalGuard",
+    "receipt_version": "agora-0.1",
+    "created_at": "2026-05-21T02:04:00.000Z",
+    "market": {
+      "venue": "prediction-market adapter",
+      "title": "BTC 5m direction",
+      "outcome": "Down",
+      "observed_price": 0.74,
+      "estimated_fair_probability": 0.651,
+      "edge": -0.089
+    },
+    "agent_thesis": {
+      "summary": "The model found directionality, but the price exceeded the capped-entry envelope and the edge was negative after fees.",
+      "evidence": [
+        "ask price exceeded hard cap",
+        "expected edge below threshold",
+        "depth became one-sided"
+      ],
+      "confidence": "low"
+    },
+    "agent_loop": [
+      {
+        "stage": "observe",
+        "input": "price, edge estimate, and depth snapshot",
+        "output": "candidate market state"
+      },
+      {
+        "stage": "score",
+        "input": "observed price 0.74 versus estimated fair probability 0.651",
+        "output": "negative edge after costs"
+      },
+      {
+        "stage": "gate",
+        "input": "0.68 max buy price and liquidity checks",
+        "output": "block before submit"
+      },
+      {
+        "stage": "act",
+        "input": "blocked candidate",
+        "output": "no order, no exposure"
+      },
+      {
+        "stage": "anchor",
+        "input": "non-action receipt",
+        "output": "auditable refusal record"
+      },
+      {
+        "stage": "reconcile",
+        "input": "no submit event",
+        "output": "terminal state is blocked before execution"
+      }
+    ],
+    "risk_governor": {
+      "action": "block",
+      "max_buy_price": 0.68,
+      "max_notional_usdc": 1.2,
+      "max_live_submits": 1,
+      "hard_blocks": [
+        "price 0.74 exceeds cap 0.68",
+        "negative edge after estimated costs"
+      ]
+    },
+    "execution_adapter": {
+      "mode": "simulation",
+      "side": "BUY",
+      "price": 0.74,
+      "size": 0,
+      "order_id": "",
+      "lifecycle_status": "blocked_before_submit",
+      "note": "The safest trade is often the one the agent refuses to place."
+    },
+    "arc_receipt_layer": {
+      "settlement_currency": "USDC",
+      "intent": "publish a non-execution receipt so downstream users can audit why no trade occurred",
+      "max_notional_microusd": 0,
+      "anchor_proof_ref": "data/arc_receipt_anchor.json"
+    }
+  }
+]

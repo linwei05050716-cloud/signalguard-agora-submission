@@ -1,0 +1,27 @@
+[
+  {
+    "ts": "09:56:25 CST",
+    "title": "Capped live run armed",
+    "body": "Agent adapter launched with $1.20 max notional, 0.68 max buy price, one live submit, and a 900 second timeout."
+  },
+  {
+    "ts": "09:56:46 CST",
+    "title": "Signal converted to capped action",
+    "body": "BUY Up candidate at 0.60 passed the hard risk gates. The action was limited to size 2.0 and one submit only."
+  },
+  {
+    "ts": "09:56:47 CST",
+    "title": "Submit recorded",
+    "body": "A submit event was written to the execution log. The exchange order id was empty, so the lifecycle remains unresolved until reconciliation."
+  },
+  {
+    "ts": "10:00:06 CST",
+    "title": "Guard stopped the runner",
+    "body": "The guard detected submit_count new=1 and stopped both bot and guard processes. No repeat action was allowed."
+  },
+  {
+    "ts": "Current demo state",
+    "title": "Unknown is treated as risk",
+    "body": "SignalGuard surfaces missing result/fill/rejected receipts as an explicit unresolved state for operator review and reconciliation."
+  }
+]

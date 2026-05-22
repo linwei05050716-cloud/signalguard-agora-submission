@@ -1,0 +1,26 @@
+{
+  "proof_version": "signalguard-arc-anchor-0.1",
+  "network": {
+    "target": "Arc testnet",
+    "settlement_currency": "USDC",
+    "note": "Generated without a private key. Ready for Arc deployment once a builder wallet is provided."
+  },
+  "contract": {
+    "path": "contracts/SignalGuardReceiptRegistry.sol",
+    "event": "DecisionReceiptAnchored(bytes32,address,string,string,string,uint256,uint256)"
+  },
+  "receipt": {
+    "id": "sg-demo-20260521-095646",
+    "hash_algorithm": "sha256",
+    "hash": "0x3e07f8e5b692c0403651960d3efbcf152538ee55386f9e0fdc0a518f5c923cba",
+    "market": "BTC 5m direction",
+    "action": "allow_capped_submit",
+    "max_notional_usdc": 1.2,
+    "max_notional_microusd": 1200000
+  },
+  "audit_state": {
+    "lifecycle_status": "submitted_without_result_receipt",
+    "terminal_exchange_receipt_present": false,
+    "unresolved_states_are_visible": true
+  }
+}
